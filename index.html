@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gou</title>
+    <style>
+        body {
+            background: #f6f9fc;
+            margin: 0;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .header-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            /* border: 1px solid red; */
+            height: 60px;
+            width: 100%;
+            z-index: 999;
+            background-color: white;
+        }
+        .option-cell {
+            margin-left: 50px;
+            display: inline-block;
+            height: 60px;
+        }
+        .option {
+            position: relative;
+            display: inline-block;
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+        .option a {
+            text-decoration: none;
+            color: black;
+        }
+        .option a:hover {
+            background-image: linear-gradient(180deg,#fff06b,#fff06b);
+            background-position: 6px bottom;
+            background-repeat: no-repeat;
+            background-size: 100% 10px;
+        }
+        vertical::after {
+            content: "|";
+        }
+        more::after {
+            margin-left: -4px;
+            content: "▿";
+        }
+        twitter::after {
+            display: inline-block;
+            content: "";
+            background: url(./twitter.png) no-repeat;
+            background-size: 100%;
+            height: 25px;
+            width: 25px;
+            border-radius: 3px;
+            position: absolute;
+            top: 17px;
+            right: 160px;
+        }
+        facebook::after {
+            display: inline-block;
+            content: "";
+            background: url(./facebook.png) no-repeat;
+            background-size: 100%;
+            height: 25px;
+            width: 25px;
+            border-radius: 3px;
+            position: absolute;
+            top: 17px;
+            right: 200px;
+        }
+        .nav-button {
+            width: auto;
+            padding: 0 10px;
+            height: 30px;
+            line-height: 30px;
+            border-radius: 4px;
+            text-align: center;
+            user-select: none;
+            border: 1px solid #000;
+            font-size: .66667rem;
+            letter-spacing: 1px;
+            position: absolute;
+            top: 14px;
+            right: 30px;
+            background-color: white;
+            transition: 0.5s;
+        }
+        .nav-button:hover {
+            background-color: #fff06b;
+            transition: 0.5s;
+        }
+        .logo {
+            width: auto;
+            float: left;
+            margin: 19px 0;
+            display: inline-block;
+            height: 16px;
+            margin-left: 25px;
+        }
+        .logo-img {
+            width: 140px;
+            height: 20px;
+        }
+        .slash {
+            position: relative;
+            top: 30px;
+            background: linear-gradient(60deg,#ffe8d9,#ffcdcc);
+            /* border: 1px solid white; */
+            width: 100%;
+            height: 500px;
+            margin: 0 auto;
+        }
+        .left-container {
+            position: relative;
+            display: block;
+            background-color: #f6f9fc;
+            /* border: 1px solid red; */
+            margin: 30px auto;
+            width: 1150px;
+            height: 440px;
+            top: 30px;
+        }
+        .left-content {
+            display: inline-block;
+            width: 480px;
+            height: 390px;
+            /* border: 1px solid red; */
+            margin: 25px;
+        }
+        .headtip {
+            padding: 0 30px;
+            letter-spacing: .08334rem;
+            font-weight: 100;
+            color: #cacaca;
+            top: 30px;
+            font-size: 13px;
+            box-sizing: border-box;
+            position: relative;
+            font-family: Soleil, Helvetica, Arial, sans-serif;
+            text-transform: uppercase;
+            display: inline-block;
+            left: 0;
+        }
+        .headline {
+            box-sizing: border-box;
+            font-size: 2rem;
+            color: #000;
+            display: inline-block;
+            padding: 0 30px;
+            width: 100%;
+            font-family: Abril Display, Georgia, serif;
+            margin: 60px 0 0px 0;
+            line-height: 2.5rem;
+            text-align: left;
+        }
+        .headtip-2 {
+            background-image: linear-gradient(180deg,#fff06b,#fff06b);
+            background-position: 4px bottom;
+            background-repeat: no-repeat;
+            background-size: 100% 10px;
+            bottom: -20px;
+            font-family: Soleil,Helvetica,Arial,sans-serif;
+            font-size: .83rem;
+            font-weight: 400;
+            left: 0;
+            letter-spacing: .08334rem;
+            line-height: 2rem;
+            margin: 0 30px 0;
+            position: relative;
+        }
+        .headtip-3 {
+            font-size: 18px;
+            margin-bottom: 30px;
+            line-height: 1.2;
+            width: 100%;
+            margin: 40px 30px;
+            font-family: Soleil,Helvetica,Arial,sans-serif;
+            display: inline-block;
+            text-align: left;
+        }
+        .right-img-container {
+            display: inline-block;
+            /* border: 1px solid red; */
+            margin: 0px 20px;
+            width: 600px;
+            height: 440px;
+            position: absolute;
+        }
+        .right-img-container img{
+            width: 600px;
+            height: 440px;  
+        }
+        .story {
+            position: relative;
+            top: 30px;
+            margin-bottom: 30px;
+        }
+        .story-header {
+            text-align: center;
+        }
+        .story-container {
+            display: block;
+            margin: 0 auto;
+            width: 1084px;
+        }
+        .story-cell {
+            margin: 0 auto;
+        }
+        .story-detail {
+            float: left;
+            width: 265px;
+            height: 330px;
+            display: block;
+            margin: 10px 3px;
+        }
+        .story-img {
+            width: 250px;
+            height: 250px;
+        }
+        .story-title {
+            display: inline-block;
+            width: 250px;
+            font-size: 0.9em;
+            font-weight: 700;
+            margin: 5px;
+        }
+        .story-title :hover {
+            background-image: linear-gradient(180deg,#fff06b,#fff06b);
+            background-position: 4px bottom;
+            background-repeat: no-repeat;
+            background-size: 100% 10px;
+        }
+        .story:after {
+            clear: both;
+            content:" ";
+            display: block;
+            width:0;
+            height: 0;
+            visibility: hidden;
+        }
+        .footer {
+            margin: 25px;
+        }
+        .footer-option {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+        .footer-option a {
+            text-decoration: none;
+            color: black;
+        }
+        .footer-option a:hover {
+            background-image: linear-gradient(180deg,#fff06b,#fff06b);
+            background-position: 4px bottom;
+            background-repeat: no-repeat;
+            background-size: 100% 10px;
+        }
+        .footer-cell {
+            margin-left: 50px;
+            display: inline-block;
+            height: 60px;
+        }
+        .footer-logo {
+            width: auto;
+            float: left;
+            margin: 17px 40px;
+            display: inline-block;
+            height: 17px;
+            margin-left: 24px;
+        }
+        .copyright {
+            margin-left: 70px;
+            margin-top: 30px;
+            margin-bottom: 50px;
+        }
+        .submenu {
+            width: 220px;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #fff;
+            height: auto;
+            display: none;
+            border: 1px solid #eee;
+            border-radius: 1px;
+            box-sizing: border-box;
+            padding: 5px 20px 15px 20px;
+        }
+        .submenu a {
+            display: inline-block;
+            float: left;
+            font-family: Soleil, Helvetica, Arial, sans-serif;
+            font-weight: 100;
+            letter-spacing: .1rem;
+            text-transform: uppercase;
+            list-style-type: none;
+            font-size: .66667rem;
+            line-height: 1.3rem;
+            box-sizing: border-box;
+            margin: 10px 0 0;
+            width: auto;
+            background-color: transparent;
+            color: inherit;
+            text-decoration: none;
+            clear: both;
+        }
+        #id-option-more {
+            position: relative;
+            display: inline-block;
+        }
+        #id-option-more:hover .submenu{
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="header-container">
+            <div class="header">
+                <div class="logo">
+                    <img class="logo-img" src="./logo.png" alt="">
+                </div>
+                <div class="option-cell">
+                    <div class="option">
+                        <a href="">LISTEN</a>
+                    </div>
+                    <div class="option">
+                        <a href="">CLASSES</a>
+                    </div>
+                    <div class="option">
+                        <a href="">shop</a>
+                    </div>
+                    <vertical></vertical>
+                    <div class="option">
+                        <a href="">diy</a>
+                    </div>
+                    <div class="option">
+                        <a href="">index</a>
+                    </div>
+                    <div class="option">
+                        <a href="">food</a>
+                    </div>
+                    <div id="id-option-more" class="option">
+                        <a href="">more</a>
+                        <more></more>
+                        <span class="submenu">
+                            <a href="">Fashion</a>
+                            <a href="">Lifestyle</a>
+                            <a href="">Relationships</a>
+                            <a href="">Entertainment</a>
+                            <a href="">Issues</a>
+                            <a href="">Health</a>
+                            <a href="">Beauty</a>
+                            <a href="">Brit's Blog</a>
+                        </span>
+                    </div>
+                    <facebook></facebook>
+                    <twitter></twitter>
+                    <button class="nav-button">Subscribe</button>
+                </div>
+            </div>
+        </div>    
+        <div class="slash">
+            <div class="left-container">
+                <div class="left-content">
+                    <span class="headtip">SPONSORED</span>
+                    <span class="headline">5 Steps to Defining a Successful Brand Strategy</span>
+                    <span class="headtip-2">Read more</span>
+                    <span class="headtip-3">Selfmade's branding pro shares her best tips for building your brand *before* investing in it.</span>
+                </div>
+                <div class="right-img-container">
+                    <img src="slash.png" alt="">
+                </div>
+            </div>
+            
+        </div>
+        <div class="story">
+            <div class="story-header">
+                <h1>This Week’s Stories</h1>
+            </div>
+            <div class="story-container">
+                <div class="story-cell">
+                    <div class="story-detail">
+                        <img class="story-img" src="s1.png" alt="">
+                        <span class="story-title">
+                            <a href="">Make It Over: Pocket Doors with a Wallpaper Pattern Pop</a>
+                        </span>
+                    </div>
+                    <div class="story-detail">
+                        <img class="story-img" src="s2.png" alt="">
+                        <span class="story-title">
+                            <a href="">12 Must-Haves for the Dreamiest Boho Bedroom Decor Ever</a>
+                        </span>
+                    </div>
+                    <div class="story-detail">
+                        <img class="story-img" src="s3.png" alt="">                        
+                        <span class="story-title">
+                            <a href="">This Colorful Baby Lounger is Essential for Adventurous New Parents</a>
+                        </span>
+                    </div>
+                    <div class="story-detail">
+                        <img class="story-img" src="s4.png" alt="">
+                        <span class="story-title">
+                            <a href="">Brit’s Tips on Setting a Mindset for Success (from Her BlogHer Keynote!)</a>
+                        </span>
+                    </div>
+                    <div class="story-detail">
+                        <img class="story-img" src="s5.png" alt="">
+                        <span class="story-title">
+                            <a href="">Writing a Business Model? Here Are Pro Tips on Knowing Your Worth</a>
+                        </span>
+                    </div>
+                    <div class="story-detail">
+                        <img class="story-img" src="s6.png" alt="">
+                        <span class="story-title">
+                            <a href="">Make It Over: Pocket Doors with a Wallpaper Pattern Pop</a>
+                        </span>
+                    </div>
+                    <div class="story-detail">
+                        <img class="story-img" src="s7.png" alt="">
+                        <span class="story-title">
+                            <a href="">Make It Over: Pocket Doors with a Wallpaper Pattern Pop</a>
+                        </span>
+                    </div>
+                    <div class="story-detail">
+                        <img class="story-img" src="s8.png" alt="">
+                        <span class="story-title">
+                            <a href="">Found: The Best Halloween Decor On Amazon</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="footer-cell">
+                <div class="footer-logo">
+                    <img class="logo-img" src="./logo.png" alt="">
+                </div>
+                <div class="footer-option">
+                    <a href="">ABOUT</a>
+                </div>
+                <div class="footer-option">
+                    <a href="">PRESS</a>
+                </div>
+                <div class="footer-option">
+                    <a href="">CLASSES</a>
+                </div>
+                <div class="footer-option">
+                    <a href="">CAREERS</a>
+                </div>
+                <div class="footer-option">
+                    <a href="">CONTACT</a>
+                </div>
+                <div class="footer-option">
+                    <a href="">DO NOT SELL MY INFO</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <span class="copyright-content">© 2020 JUANTU, Inc. All rights reserved</span>
+            </div>
+        </div>
+    </div>
+    <script>
+        
+    </script>
+</body>
+</html>
